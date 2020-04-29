@@ -1,5 +1,8 @@
 # A simple file to produce the results we'll present on 05/07/20
 
+import numpy as np
+import gmpy2
+
 def reproduce_pantheon_constraints():
     pass
 
@@ -38,3 +41,4 @@ noise_and_best_fit()
 histogram_of_cov_squared_residuals()
 
 h0_stability_test()
+
