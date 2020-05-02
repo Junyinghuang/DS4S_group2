@@ -40,7 +40,7 @@ def dL(z, o_l, o_m, H0):
         return (c/H0)*((1+z)/np.sqrt(o_k))*np.sin(np.sqrt(o_k)*inti)
 
 def mu(z, o_l, o_m, H0):
-    return 5*np.log(dL(z, o_l, o_m, H0)/10)
+    return 5*np.log(dL(z, o_l, o_m, H0)/10)+30
 
 def csys(i):
     file = open("csys.txt","r")
