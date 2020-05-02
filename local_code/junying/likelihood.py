@@ -2,21 +2,21 @@ import numpy as np
 import gmpy2
 
 def z(i):
-    file = open("z.txt","r")
+    file = open("local_code/junying/z.txt","r")
     a=[]
     for line in file:
         a.append(float(line.strip('\n')))
     return a[i]
 
 def mb(i):
-    file = open("mb.txt","r")
+    file = open("local_code/junying/mb.txt","r")
     a=[]
     for line in file:
         a.append(float(line.strip('\n')))
     return a[i]
 
 def dmb(i):
-    file = open("dmb.txt","r")
+    file = open("local_code/junying/dmb.txt","r")
     a=[]
     for line in file:
         a.append(float(line.strip('\n')))
@@ -43,7 +43,7 @@ def mu(z, o_l, o_m, H0):
     return 5*np.log(dL(z, o_l, o_m, H0)/10)+30
 
 def csys(i):
-    file = open("csys.txt","r")
+    file = open("local_code/junying/csys.txt","r")
     a=[]
     for line in file:
         a.append(float(line.strip('\n')))

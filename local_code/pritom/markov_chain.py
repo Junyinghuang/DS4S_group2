@@ -1,9 +1,10 @@
 # For producing markov chains
 import numpy as np
-
+from local_code.adam.new_parameters import get_new_parameters
+from local_code.junying.likelihood import likelihood
 
 def generate_MCMC_chain(sample_number, data,
-                        initial_proposal):
+                        initial_proposal, sigmas):
     '''
     This function generates and return a MCMC chain
 
@@ -26,22 +27,22 @@ def generate_MCMC_chain(sample_number, data,
     '''
 
     posterior_chain = []
-    data =  data
+    #data =  data
     current_proposal = initial_proposal
 
     for i in range(sample_number):
 
-        next_proposal = proposal(current_proposal)
-
-        current_proposal_likelihood = likelihood(current_proposal,
-                                                 data)
-        next_proposal_likelihood = likelihood(next_proposal,
-                                                 data)
+        next_proposal = get_new_parameters(sigmas,current_proposal)
+        print('check1')
+        current_proposal_likelihood = likelihood(*current_proposal)
+        print('check2')
+        next_proposal_likelihood = likelihood(*next_proposal)
+        print('check3')
         likelihood_ratio = (next_proposal_likelihood
                            / current_proposal_likelihood)
-
+        print('check4')
         acceptance_probabilty = min(1.0, likelihood_ratio)
-
+        print('check5')
         acceptance = np.random.uniform() <= acceptance_probabilty
         if acceptance:
             current_proposal = next_proposal
@@ -49,6 +50,6 @@ def generate_MCMC_chain(sample_number, data,
         else:
             current_proposal = current_proposal
             posterior_chain = np.append(posterior_chain, current_proposal)
-
+        print('check6')
     return posterior_chain
 
