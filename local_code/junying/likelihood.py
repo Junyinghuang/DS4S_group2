@@ -52,18 +52,20 @@ def csys(i):
 def gaus(mean, sigma, x):
     return np.exp(-(((x-mean)/sigma)**2)/2)/sigma/np.sqrt(2*np.pi)
 
+#Producing cinv, used in likelihood below
+b=np.zeros(shape=(40,40))
+for i in range(0,40):
+    for j in range(0,40):
+        k=40*i+j
+        b[i,j]=csys(k)
+for i in range(0,40):
+    b[i,i]=b[i,i]+dmb(i)
+cinv=np.linalg.inv(b)
+
 def likelihood(o_l, o_m, H0, M):
-    b=np.zeros(shape=(40,40))
-    for i in range(0,40):
-        for j in range(0,40):
-            k=40*i+j
-            b[i,j]=csys(k)
-    for i in range(0,40):
-        b[i,i]=b[i,i]+dmb(i)
-    cinv=np.linalg.inv(b)
     expo=0
     for i in range(0,40):
+        first_term = (mb(i)-(mu(z(i),o_l, o_m, H0)+M))
         for j in range(0,40):
-            expo=expo-(mb(i)-(mu(z(i),o_l, o_m, H0)+M))*cinv[i,j]*(mb(j)-(mu(z(j),o_l, o_m, H0)+M))/2
+            expo=expo-first_term*cinv[i,j]*(mb(j)-(mu(z(j),o_l, o_m, H0)+M))/2
     return gmpy2.exp(expo)*gaus(19.23,0.042,M)
-
