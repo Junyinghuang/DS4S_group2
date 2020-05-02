@@ -65,5 +65,5 @@ def likelihood(o_l, o_m, H0, M):
     for i in range(0,40):
         for j in range(0,40):
             expo=expo-(mb(i)-(mu(z(i),o_l, o_m, H0)+M))*cinv[i,j]*(mb(j)-(mu(z(j),o_l, o_m, H0)+M))/2
-    return gmpy2.exp(expo)*gaus(19.23,0.042,M)
+    return gmpy2.exp(expo)*gaus(-19.23,0.042,M)
 
