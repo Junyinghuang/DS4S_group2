@@ -3,10 +3,10 @@
 ## The group memebers are Adam, Junying and Pritom.
 # Adam making an edit to ensure that Git is working properly
 
-#How to likelihood:
+# How to likelihood:
 
-import numpy as np
-import gmpy2
-import likelihood
+import numpy as np <br />
+import gmpy2 <br />
+import likelihood <br />
 
 likelihood.likelihood(omega_lambda, omega_m, H0, M)
