@@ -24,41 +24,64 @@ def mu(z, o_l, o_m, H0):
 def gaus(mean, sigma, x):
     return np.exp(-(((x-mean)/sigma)**2)/2)/sigma/np.sqrt(2*np.pi)
 
+
+def local_csys():
+    file = open("local_code/junying/csys.txt","r")
+    csys=[]
+    for line in file:
+        csys.append(float(line.strip('\n')))
+    file.close()
+    return csys
+
+def local_dmb():
+    file = open("local_code/junying/dmb.txt","r")
+    dmb=[]
+    for line in file:
+        dmb.append(float(line.strip('\n')))
+    file.close()
+    return dmb
+
+#Final speedup: moving cinv out so as to minimize the number of matrix inversions
+c=np.zeros(shape=(40,40))
+csys_local = local_csys()
+dmb_local = local_dmb()
+for i in range(0,40):
+    for j in range(0,40):
+        k=40*i+j
+        c[i,j]=csys_local[k]
+for i in range(0,40):
+    c[i,i]=c[i,i]+dmb_local[i]
+cinv=np.linalg.inv(c)
+
 def likelihood(o_l, o_m, H0, M):
     
-    file = open("z.txt","r")
+    file = open("local_code/junying/z.txt","r")
     z=[]
     for line in file:
         z.append(float(line.strip('\n')))
     file.close()    
     
-    file = open("mb.txt","r")
+    file = open("local_code/junying/mb.txt","r")
     mb=[]
     for line in file:
         mb.append(float(line.strip('\n')))
     file.close()
     
-    file = open("dmb.txt","r")
+    file = open("local_code/junying/dmb.txt","r")
     dmb=[]
     for line in file:
         dmb.append(float(line.strip('\n')))
     file.close()
     
-    file = open("csys.txt","r")
+    file = open("local_code/junying/csys.txt","r")
     csys=[]
     for line in file:
         csys.append(float(line.strip('\n')))
-    c=np.zeros(shape=(40,40))
-    for i in range(0,40):
-        for j in range(0,40):
-            k=40*i+j
-            c[i,j]=csys[k]
-    for i in range(0,40):
-        c[i,i]=c[i,i]+dmb[i]
-    cinv=np.linalg.inv(c)
+
     expo=0
     for i in range(0,40):
+        first_term = (mb[i]-(mu(z[i],o_l, o_m, H0)+M))
         for j in range(0,40):
-            expo=expo-(mb[i]-(mu(z[i],o_l, o_m, H0)+M))*cinv[i,j]*(mb[j]-(mu(z[j],o_l, o_m, H0)+M))/2
+            expo=expo-first_term*cinv[i,j]*(mb[j]-(mu(z[j],o_l, o_m, H0)+M))/2
     return gmpy2.exp(expo)*gaus(-19.23,0.042,M)
 

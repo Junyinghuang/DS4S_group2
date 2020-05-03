@@ -1,10 +1,15 @@
 # A simple file to produce the results we'll present on 05/07/20
 
+#List of parameters should look like 'o_l, o_m, H0, M'
+
 import numpy as np
 import gmpy2
+from local_code.pritom.markov_chain import generate_MCMC_chain
+from local_code.adam.visualization import plot_markov_chain
 
 def reproduce_pantheon_constraints():
-    pass
+    my_chain = generate_MCMC_chain(10,None,[.8,.3,70,19.23],[.2,.2,1,1])
+    plot_markov_chain(my_chain)
 
 def plot_posterior_of_h0():
     pass
