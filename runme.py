@@ -5,11 +5,12 @@
 import numpy as np
 import gmpy2
 from local_code.pritom.markov_chain import generate_MCMC_chain
-from local_code.adam.visualization import plot_markov_chain
+from local_code.adam.visualization import plot_markov_chain, split_data, pantheon_scatter
 
 def reproduce_pantheon_constraints():
-    my_chain = generate_MCMC_chain(10,None,[.8,.3,70,19.23],[.2,.2,1,1])
+    my_chain = generate_MCMC_chain(1000,None,[.8,.3,70,19.23],[.01,.01,.1,.1])
     plot_markov_chain(my_chain)
+    pantheon_scatter(my_chain)
 
 def plot_posterior_of_h0():
     pass
