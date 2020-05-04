@@ -1,5 +1,6 @@
 # For plotting and double-checking our results
 from matplotlib import pyplot as plt
+import pickle
 
 def plot_markov_chain(chain_in):
     plt.plot(chain_in)
@@ -24,3 +25,6 @@ def pantheon_scatter(chain_in):
     plt.xlim(0,1.6)
     plt.ylim(0,2.4)
     plt.show()
+
+
+

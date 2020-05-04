@@ -6,13 +6,17 @@ import numpy as np
 import gmpy2
 from local_code.pritom.markov_chain import generate_MCMC_chain
 from local_code.adam.visualization import plot_markov_chain, split_data, pantheon_scatter
+from local_code.adam.new_parameters import save_chain, load_chain
+
+sigmas = [.01,.01,.1,.1]
 
 def reproduce_pantheon_constraints():
-    my_chain = generate_MCMC_chain(1000,None,[.8,.3,70,19.23],[.01,.01,.1,.1])
+    my_chain = load_chain()
     plot_markov_chain(my_chain)
     pantheon_scatter(my_chain)
+    return my_chain
 
-def plot_posterior_of_h0():
+def plot_posterior_of_h0(chain_in):
     pass
 
 def residual_plot_binned_data():
@@ -30,12 +34,15 @@ def histogram_of_cov_squared_residuals():
 def h0_stability_test():
     pass
 
+
+
+
 #Part 1
-reproduce_pantheon_constraints()
+my_chain = reproduce_pantheon_constraints()
 
 
 #Part 2
-plot_posterior_of_h0()
+plot_posterior_of_h0(my_chain)
 
 #Part 3, tests
 residual_plot_binned_data()
@@ -47,4 +54,3 @@ noise_and_best_fit()
 histogram_of_cov_squared_residuals()
 
 h0_stability_test()
-

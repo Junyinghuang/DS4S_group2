@@ -1,6 +1,7 @@
 # For making jumps in parameter space
 
 import numpy as np
+import pickle
 
 def get_new_parameters(list_of_sigmas,list_of_recent_guesses):
     '''
@@ -17,3 +18,12 @@ def get_new_parameters(list_of_sigmas,list_of_recent_guesses):
     '''
     new_guesses = [np.random.normal(point,sigma) for point,sigma in zip(list_of_recent_guesses,list_of_sigmas)]
     return new_guesses
+
+
+
+def save_chain(chain_in):
+    pickle.dump(chain_in,open('local_code/adam/chain.pickle','wb'))
+
+def load_chain():
+    return pickle.load(open('local_code/adam/chain.pickle','rb'))
+
