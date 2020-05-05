@@ -3,6 +3,8 @@ from local_code.pritom.markov_chain import generate_MCMC_chain
 
 sigmas = [.01,.01,.01,0]
 
+#Initial chain values:  [0.8, 0.3, 70000, -19.23]
+
 n_new_elements = 1000
 
 def continue_chain(chain_in,n_samples = 200):
@@ -12,10 +14,10 @@ def continue_chain(chain_in,n_samples = 200):
 #to reset the chain
 '''
 current_chain = load_chain()
-next_chain = [current_chain[0]]
+next_chain = [[0.8, 0.3, 70000, -19.23]]
 save_chain(next_chain)
-
 '''
+
 current_chain = load_chain()
 print(current_chain[0])
 print('Initial chain length: ' + str(len(current_chain)))
