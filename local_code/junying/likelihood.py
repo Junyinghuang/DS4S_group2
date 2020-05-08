@@ -2,10 +2,16 @@ import numpy as np
 import gmpy2
 
 def E(z, o_l, o_m):
+    '''
+    define E
+    '''
     o_k=1-o_l-o_m
     return np.sqrt(o_m*(1+z)**3+o_l+abs(o_k)*(1+z)**2)
 
 def dL(z, o_l, o_m, H0):
+    '''
+    define dL
+    '''
     o_k=1-o_l-o_m
     inti=0
     dz=z/100
@@ -19,13 +25,22 @@ def dL(z, o_l, o_m, H0):
         return (c/H0)*((1+z)/np.sqrt(o_k))*np.sin(np.sqrt(o_k)*inti)
 
 def mu(z, o_l, o_m, H0):
+    '''
+    define mu
+    '''
     return 5*np.log10(dL(z, o_l, o_m, H0)/10)+30
 
 def gaus(mean, sigma, x):
+    '''
+    define a gaussian function
+    '''
     return np.exp(-(((x-mean)/sigma)**2)/2)/sigma/np.sqrt(2*np.pi)
 
 
 def local_csys():
+    '''
+    read systematic error
+    '''
     file = open("local_code/junying/csys.txt","r")
     csys=[]
     for line in file:
@@ -34,6 +49,9 @@ def local_csys():
     return csys
 
 def local_dmb():
+    '''
+    read mb error
+    '''
     file = open("local_code/junying/dmb.txt","r")
     dmb=[]
     for line in file:
@@ -54,6 +72,9 @@ for i in range(0,40):
 cinv=np.linalg.inv(c)
 
 def likelihood(o_l, o_m, H0, M):
+    '''
+    define likelihood
+    '''
     
     file = open("local_code/junying/z.txt","r")
     z=[]
