@@ -2,11 +2,13 @@ import numpy as np
 import gmpy2
 
 def E(z, o_l, o_m):
-    o_k=1-o_l-o_m
+    #o_k=1-o_l-o_m #Enforcing the constraint
+    o_k = .001 # Not enforcing the constraint
     return np.sqrt(o_m*(1+z)**3+o_l+abs(o_k)*(1+z)**2)
 
 def dL(z, o_l, o_m, H0):
-    o_k=1-o_l-o_m
+    #o_k=1-o_l-o_m #Enforcing the constraint
+    o_k = .001 # Not enforcing the constraint
     inti=0
     dz=z/100
     for i in range(0,100,1):
@@ -54,7 +56,6 @@ for i in range(0,40):
 cinv=np.linalg.inv(c)
 
 def likelihood(o_l, o_m, H0, M):
-    
     file = open("local_code/junying/z.txt","r")
     z=[]
     for line in file:
@@ -84,4 +85,3 @@ def likelihood(o_l, o_m, H0, M):
         for j in range(0,40):
             expo=expo-first_term*cinv[i,j]*(mb[j]-(mu(z[j],o_l, o_m, H0)+M))/2
     return gmpy2.exp(expo)*gaus(-19.23,0.042,M)
-

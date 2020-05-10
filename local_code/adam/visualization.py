@@ -26,5 +26,13 @@ def pantheon_scatter(chain_in):
     plt.ylim(0,2.4)
     plt.show()
 
+def histogram_H0(chain_in):
+    my_chain = chain_in
+    h0_vals = [chain_elem[2] for chain_elem in my_chain]
+    plt.hist(h0_vals,density=True,bins=50)
+    plt.ylabel('Density')
+    plt.xlabel('H_0')
+    plt.xlim(xmin=69999, xmax = 70001)
+    plt.show()
 
 

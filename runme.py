@@ -5,8 +5,9 @@
 import numpy as np
 import gmpy2
 from local_code.pritom.markov_chain import generate_MCMC_chain
-from local_code.adam.visualization import plot_markov_chain, split_data, pantheon_scatter
+from local_code.adam.visualization import plot_markov_chain, split_data, pantheon_scatter, histogram_H0
 from local_code.adam.new_parameters import save_chain, load_chain
+from matplotlib import pyplot as plt
 
 #[0.8, 0.3, 70000, 19.23]sigmas = [.01,.01,.01,.01]
 
@@ -14,10 +15,11 @@ def reproduce_pantheon_constraints():
     my_chain = load_chain()
     plot_markov_chain(my_chain)
     pantheon_scatter(my_chain)
+    print(len(my_chain))
     return my_chain
 
 def plot_posterior_of_h0(chain_in):
-    pass
+    histogram_H0(chain_in)
 
 def residual_plot_binned_data():
     pass
