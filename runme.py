@@ -13,9 +13,9 @@ from matplotlib import pyplot as plt
 
 def reproduce_pantheon_constraints():
     my_chain = load_chain()
-    plot_markov_chain(my_chain)
+    #plot_markov_chain(my_chain)
     pantheon_scatter(my_chain)
-    print(len(my_chain))
+    #print(len(my_chain))
     return my_chain
 
 def plot_posterior_of_h0(chain_in):
@@ -38,7 +38,7 @@ def h0_stability_test():
 
 
 
-
+'''
 #Part 1
 my_chain = reproduce_pantheon_constraints()
 
@@ -56,3 +56,4 @@ noise_and_best_fit()
 histogram_of_cov_squared_residuals()
 
 h0_stability_test()
+'''
