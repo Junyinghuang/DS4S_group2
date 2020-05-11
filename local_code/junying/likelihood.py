@@ -71,9 +71,19 @@ for i in range(0,40):
     c[i,i]=c[i,i]+dmb_local[i]
 cinv=np.linalg.inv(c)
 
-def likelihood(o_l, o_m, H0, M):
+#covariance matrix without systematic error
+c2=np.zeros(shape=(40,40))
+dmb_local2 = local_dmb()
+for i in range(0,40):
+    c2[i,i]=c2[i,i]+dmb_local2[i]
+cinv2=np.linalg.inv(c2)
+
+
+def likelihood(o_l, o_m, H0, M,sys):
     '''
     define likelihood
+    sys=1 to include systematic error
+    sys=0 to ignore systematic error
     '''
     
     file = open("local_code/junying/z.txt","r")
@@ -103,5 +113,8 @@ def likelihood(o_l, o_m, H0, M):
     for i in range(0,40):
         first_term = (mb[i]-(mu(z[i],o_l, o_m, H0)+M))
         for j in range(0,40):
-            expo=expo-first_term*cinv[i,j]*(mb[j]-(mu(z[j],o_l, o_m, H0)+M))/2
+            if sys==1:
+                expo=expo-first_term*cinv[i,j]*(mb[j]-(mu(z[j],o_l, o_m, H0)+M))/2
+            else:
+                expo=expo-first_term*cinv2[i,j]*(mb[j]-(mu(z[j],o_l, o_m, H0)+M))/2
     return gmpy2.exp(expo)*gaus(-19.23,0.042,M)
