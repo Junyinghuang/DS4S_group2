@@ -1,12 +1,8 @@
 # DS4S_group2
 
-## The group memebers are Adam, Junying and Pritom.
-# Adam making an edit to ensure that Git is working properly
+## Group members: Adam, Junying, and Pritom.
+# Welcome!
 
-# How to likelihood:
+This project is a part of Prof. Lloyd Knox's Spring 2020 PHY 250 course, Data Science for Scientists, offered at UC Davis.
 
-import numpy as np <br />
-import gmpy2 <br />
-import likelihood <br />
-
-likelihood.likelihood(omega_lambda, omega_m, H0, M)
+Please see our Jupyter notebook for results and a quick tour of our code. 
