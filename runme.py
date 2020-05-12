@@ -11,8 +11,8 @@ from matplotlib import pyplot as plt
 
 #[0.8, 0.3, 70000, 19.23]sigmas = [.01,.01,.01,.01]
 
-def reproduce_pantheon_constraints():
-    my_chain = load_chain()
+def reproduce_pantheon_constraints(sys=1):
+    my_chain = load_chain(sys=sys)
     #plot_markov_chain(my_chain)
     pantheon_scatter(my_chain)
     #print(len(my_chain))

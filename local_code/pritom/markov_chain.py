@@ -4,7 +4,7 @@ from local_code.adam.new_parameters import get_new_parameters
 from local_code.junying.likelihood import likelihood
 
 def generate_MCMC_chain(sample_number, data,
-                        initial_proposal, sigmas):
+                        initial_proposal, sigmas,sys_errors = 1):
     '''
     This function generates and return a MCMC chain
 
@@ -32,8 +32,8 @@ def generate_MCMC_chain(sample_number, data,
 
     for i in range(sample_number):
         next_proposal = get_new_parameters(sigmas,current_proposal)
-        current_proposal_likelihood = likelihood(*current_proposal)
-        next_proposal_likelihood = likelihood(*next_proposal) #Bottleneck
+        current_proposal_likelihood = likelihood(*current_proposal,sys_errors)
+        next_proposal_likelihood = likelihood(*next_proposal,sys_errors) #Bottleneck
         likelihood_ratio = (next_proposal_likelihood
                            / current_proposal_likelihood)
         acceptance_probabilty = min(1.0, likelihood_ratio)

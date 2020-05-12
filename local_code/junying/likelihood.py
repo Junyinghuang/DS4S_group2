@@ -79,7 +79,7 @@ for i in range(0,40):
 cinv2=np.linalg.inv(c2)
 
 
-def likelihood(o_l, o_m, H0, M,sys):
+def likelihood(o_l, o_m, H0, M,sys=1):
     '''
     define likelihood
     sys=1 to include systematic error
