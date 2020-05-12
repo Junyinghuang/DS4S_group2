@@ -5,12 +5,14 @@ import numpy as np
 from time import time
 from local_code.adam.test import test_parameter_creation
 
+# Testing to make sure that my parameter "hopper" doesn't typically produce surprising values.
+
 test_parameter_creation()
 
-'''
-#Generation of Markov Chain takes far longer than desired.
+
+
+# Generation of Markov Chain takes far longer than desired.
 
 t0 = time()
 MCData = generate_MCMC_chain(10,None,[4,4,4,4],[.1,.1,.1,.1])
-print(str(time()-t0) + ' seconds elapsed.')
-'''
+print(str(time()-t0) + ' seconds elapsed for 10 samples.')

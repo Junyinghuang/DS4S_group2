@@ -1,6 +1,14 @@
 from local_code.adam.new_parameters import save_chain, load_chain
 from local_code.pritom.markov_chain import generate_MCMC_chain
 
+'''
+Welcome to Adam's Chain growing script! Here you can:
+-Produce Markov chains
+-Save Markov chains
+-Reset Markov chains (be careful--you'll be overwriting the previously generated chains!)
+'''
+
+
 #Initial chain values:  [0.8, 0.3, 70000, -19.23]
 n_new_elements = 500
 include_systematic_errors = 0 #0 to not include, 1 to include

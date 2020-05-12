@@ -12,12 +12,21 @@ from matplotlib import pyplot as plt
 #[0.8, 0.3, 70000, 19.23]sigmas = [.01,.01,.01,.01]
 
 def reproduce_pantheon_constraints(sys=1):
+    '''
+    Quickly loads and plots Markov chains.
+
+    Input is sys, a variable which determines whether to load and plot the chain which includes systematic
+    error (1) or does not include systematic error (0).
+    '''
     my_chain = load_chain(sys=sys)
     #plot_markov_chain(my_chain)
     pantheon_scatter(my_chain)
     #print(len(my_chain))
     return my_chain
 
+'''
+#  Optional Convergence Tests, To Be Implemented If Time
+#  (Pritom)
 def plot_posterior_of_h0(chain_in):
     histogram_H0(chain_in)
 
@@ -35,7 +44,7 @@ def histogram_of_cov_squared_residuals():
 
 def h0_stability_test():
     pass
-
+'''
 
 
 '''
